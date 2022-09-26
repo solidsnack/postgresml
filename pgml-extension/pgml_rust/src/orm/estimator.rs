@@ -189,6 +189,10 @@ smartcore_estimator_impl!(smartcore::svm::svc::SVC<f32, Array2<f32>, smartcore::
 smartcore_estimator_impl!(smartcore::svm::svr::SVR<f32, Array2<f32>, smartcore::svm::PolynomialKernel<f32>>);
 smartcore_estimator_impl!(smartcore::svm::svc::SVC<f32, Array2<f32>, smartcore::svm::RBFKernel<f32>>);
 smartcore_estimator_impl!(smartcore::svm::svr::SVR<f32, Array2<f32>, smartcore::svm::RBFKernel<f32>>);
+smartcore_estimator_impl!(smartcore::naive_bayes::gaussian::GaussianNB<f32, Array2<f32>>);
+smartcore_estimator_impl!(smartcore::naive_bayes::categorical::CategoricalNB<f32, Array2<f32>>);
+smartcore_estimator_impl!(smartcore::naive_bayes::multinomial::MultinomialNB<f32, Array2<f32>>);
+smartcore_estimator_impl!(smartcore::naive_bayes::bernoulli::BernoulliNB<f32, Array2<f32>>);
 smartcore_estimator_impl!(smartcore::linear::lasso::Lasso<f32, Array2<f32>>);
 smartcore_estimator_impl!(smartcore::linear::elastic_net::ElasticNet<f32, Array2<f32>>);
 smartcore_estimator_impl!(smartcore::linear::ridge_regression::RidgeRegression<f32, Array2<f32>>);

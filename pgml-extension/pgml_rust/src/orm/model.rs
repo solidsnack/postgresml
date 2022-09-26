@@ -116,7 +116,7 @@ impl Model {
     fn fit(&mut self, project: &Project, dataset: &Dataset) {
         // Get the hyperparameters.
         let hyperparams: &serde_json::Value = &self.hyperparams.0;
-        let mut hyperparams = hyperparams.as_object().unwrap().clone();
+        let mut hyperparams = hyperparams.as_object().expect(format!("hyperparams are not a valid JSON object: {:?}", hyperparams).as_str()).clone();
 
         // Train the estimator. We are getting the estimator struct and
         // it's serialized form to save into the `models` table.
@@ -155,8 +155,12 @@ impl Model {
             }
 
             Engine::smartcore => {
-                let estimator =
+                let result =
                     smartcore_train(project.task, self.algorithm, dataset, &hyperparams);
+                let estimator = match result {
+                    Ok(e) => e,
+                    Err(e) => error!("Error during training: {:?}", e),
+                };
 
                 let bytes = smartcore_save(&estimator);
 
